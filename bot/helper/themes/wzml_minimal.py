@@ -3,9 +3,9 @@ class WZMLStyle:
     # ----------------------
     # async def start(client, message) ---> __main__.py
     ST_BN1_NAME = 'Repo'
-    ST_BN1_URL = 'https://www.github.com/weebzone/WZML-X'
+    ST_BN1_URL = 'https://www.github.com/'
     ST_BN2_NAME = 'Updates'
-    ST_BN2_URL = 'https://t.me/WZML_X'
+    ST_BN2_URL = 'https://google.com'
     ST_MSG = '''<i>This bot can mirror all your links|files|torrents to Google Drive or any rclone cloud or to telegram or to ddl servers.</i>
 <b>Type {help_command} to get a list of available commands</b>'''
     ST_BOTPM = '''<i>Now, This bot will send all your files and links here. Start Using ...</i>'''
@@ -35,7 +35,7 @@ class WZMLStyle:
     BASIC_BT = 'Basic'
     USER_BT = 'Users'
     MICS_BT = 'Mics'
-    O_S_BT = 'Owner & Sudos'
+    O_S_BT = 'Owner & Sudos✨'
     CLOSE_BT = 'Close'
     HELP_HEADER = "㊂ <b><i>Help Guide Menu!</i></b>\n\n<b>NOTE: <i>Click on any CMD to see more minor detalis.</i></b>"
 
@@ -47,7 +47,7 @@ class WZMLStyle:
 ┃ {ram_bar} {ram}%
 ┖ <b>U :</b> {ram_u} | <b>F :</b> {ram_f} | <b>T :</b> {ram_t}
 
-┎ <b><i>SWAP MEMORY :</i></b>
+┎ <b><i>SWAP MEMORY Or Additional Memory:</i></b>
 ┃ {swap_bar} {swap}%
 ┖ <b>U :</b> {swap_u} | <b>F :</b> {swap_f} | <b>T :</b> {swap_t}
 
@@ -118,7 +118,7 @@ class WZMLStyle:
 
     # async def ping(client, message): ---> __main__.py
     PING = '<i>Starting Ping..</i>'
-    PING_VALUE = '<b>Pong</b>\n<code>{value} ms..</code>'
+    PING_VALUE = '<b>Ping Pong ✨</b>\n<code>{value} ms..</code>'
     # ---------------------
 
     # async def onDownloadStart(self): --> tasks_listener.py
@@ -217,9 +217,9 @@ class WZMLStyle:
     UL =                        '<b>UL:</b> {UL}/s'
 
     ###--------BUTTONS-------
-    PREVIOUS = '⫷'
-    REFRESH = 'ᴘᴀɢᴇs\n{Page}'
-    NEXT = '⫸'
+    PREVIOUS = '⏮️'
+    REFRESH = 'ᴘᴀɢᴇs✨\n{Page}'
+    NEXT = '⏭️⏩'
     # ---------------------
 
     #STOP_DUPLICATE_MSG: ---> clone.py, aria2_listener.py, task_manager.py
@@ -264,7 +264,7 @@ class WZMLStyle:
 
     UNIVERSAL = '''㊂ <b><u>Universal Settings : {NAME}</u></b>
 
-┎<b> YT-DLP Options :</b> <b><code>{YT}</code></b>
+┎<b> YT-DLP Options :</b> <b>format:bv<code>{YT}</code></b>
 ┠<b> Default Upload :</b> <code>{DU}</code>
 ┠<b> List Mode :</b> <code>{LIST_MODE}</code>
 ┠<b> Daily Tasks :</b> <code>{DT}</code> per day
