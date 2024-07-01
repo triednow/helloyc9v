@@ -23,6 +23,9 @@ from bot.helper.ext_utils.exceptions import DirectDownloadLinkException
 from bot.helper.ext_utils.help_messages import PASSWORD_ERROR_MESSAGE
 
 _caches = {}
+user_agent = (
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0"
+)
 
 fmed_list = ['fembed.net', 'fembed.com', 'femax20.com', 'fcdn.stream', 'feurl.com', 'layarkacaxxi.icu',
              'naniplay.nanime.in', 'naniplay.nanime.biz', 'naniplay.com', 'mm9842.com']
@@ -102,71 +105,6 @@ debrid_link_sites = ["1dl.net", "1fichier.com", "alterupload.com", "cjoint.net",
                 "tnaflix.com", "trutv.com", "tu.tv", "turbo.fr", "tweakers.net", "ustream.tv", "vbox7.com", "veehd.com", "veoh.com", "vid.me", 
                 "videodetective.com", "vimeo.com", "vimeopro.com", "player.vimeo.com", "player.vimeopro.com", "wat.tv", "wimp.com", "xtube.com", 
                 "yahoo.com", "screen.yahoo.com", "news.yahoo.com", "sports.yahoo.com", "video.yahoo.com", "youporn.com"]
-                
-all_debrid_sites = ["nnistv.com", "10play.com.au", "tf1.fr", "the-hole.tv", "theintercept.com", "link.theplatform.com", "player.theplatform.com", 
-                    "feed.theplatform.com", "thesun.co.uk", "the-sun.com", "theta.tv", "weather.com", "thisamericanlife.org", "thisav.com", 
-                    "thisoldhouse.com", "thisvid.com", "thisvid.com", "thisvid.com", "3speak.tv", "3speak.tv", "tiktok.com", "m.tiktok.com", "tinypic.com", 
-                    "de.tinypic.com", "go.tlc.com", "tmz.com", "tnaflix.com", "player.tnaflix.com", "player.empflix.com", "mewatch.sg", "video.toggle.sg", 
-                    "toggo.de", "tokentube.net", "audycje.tokfm.pl", "toongoggles.com", "ici.tou.tv", "watch.travelchannel.com", "triller.co", 
-                    "v.triller.co", "triller.co", "trilulilu.ro", "trovo.live", "trtcocuk.net.tr", "trueid.id", "vn.trueid.net", "trueid.ph", "truthsocial.com",
-                    "tube8.com", "tube.tugraz.at", "tube.tugraz.at", "tubitv.com", "tubitv.com", "tatianamaslanydaily.tumblr.com", "maskofthedragon.tumblr.com", 
-                    "shieldfoss.tumblr.com", "jujanon.tumblr.com", "bartlebyshop.tumblr.com", "afloweroutofstone.tumblr.com", "naked-yogi.tumblr.com", 
-                    "prozdvoices.tumblr.com", "dominustempori.tumblr.com", "sutiblr.tumblr.com", "silami.tumblr.com", "tunein.com", "tunein.com", "tunein.com", 
-                    "tune.pk", "embed.tune.pk", "tv2.no", "tv2.no", "tvsyd.dk", "tv2lorry.dk", "tv2ostjylland.dk", "tvmidtvest.dk", "tv2fyn.dk", "tv2east.dk", 
-                    "tv2nord.dk", "tv2play.hu", "tv2play.hu", "tv4.se", "tv4play.se", "revoir.tv5monde.com", "tv5unis.ca", "tv8.it", "videos.tva.ca", "video.tva.ca", 
-                    "tvc.ru", "tver.jp", "tvigle.ru", "cloud.tvigle.ru", "tviplayer.iol.pt", "tvland.com", "tvn24.pl", "tvnmeteo.tvn24.pl", "fakty.tvn24.pl", 
-                    "sport.tvn24.pl", "tvn24bis.pl", "de.tvnet.gov.vn", "vn.tvnet.gov.vn", "us.tvnet.gov.vn", "tvnow.de", "tvnow.de", "tvnow.de", "tvnow.de", 
-                    "tvnow.de", "tvnow.de", "ethnos.gr", "tvopen.gr", "cdn.ethnos.gr", "tvp.pl", "tvp.info", "wiadomosci.tvp.pl", "swipeto.pl", "warszawa.tvp.pl", 
-                    "opole.tvp.pl", "abc.tvp.pl", "jp2.tvp.pl", "vod.tvp.pl", "krakow.tvp.pl", "teleexpress.tvp.pl", "sport.tvp.pl", "tvpparlament.pl", "tvpworld.com", 
-                    "stream.tvp.pl", "tvpstream.vod.tvp.pl", "play.tv3.lt", "tv3play.skaties.lv", "play.tv3.ee", "twitcasting.tv", "twitcasting.tv", "twitcasting.tv", 
-                    "twitch.tv", "twitch.tv", "m.twitch.tv", "twitch.tv", "twitch.tv", "twitter.com", "twitter3e4tixl4xyajtrzo62zg5vztmjuricljdp2c5kshju4avyoid.onion", 
-                    "txxx.com", "txxx.tube", "vxxx.com", "hclips.com", "hdzog.com", "hdzog.tube", "hotmovs.com", "hotmovs.tube", "inporn.com", "privatehomeclips.com", 
-                    "tubepornclassic.com", "upornia.com", "upornia.tube", "vjav.com", "vjav.tube", "voyeurhit.com", "voyeurhit.tube", "udemy.com", "wipro.udemy.com", 
-                    "video.udn.com", "ukcolumn.org", "uktvplay.uktv.co.uk", "uktvplay.co.uk", "utv.unistra.fr", "unity3d.com", "unscripted.news", "player.mais.uol.com.br", 
-                    "tvuol.uol.com.br", "mais.uol.com.br", "noticias.band.uol.com.br", "videos.band.uol.com.br", "noticias.uol.com.br", "urplay.se", "urskola.se", 
-                    "usanetwork.com", "usatoday.com", "ustream.tv", "video.ibm.com", "utreon.com", "video.varzesh3.com", "vbox7.com", "i49.vbox7.com", "veehd.com", 
-                    "app.veo.co", "veoh.com", "vesti.ru", "hitech.vesti.ru", "sochi2014.vesti.ru", "vevo.com", "embed.vevo.com", "tv.vevo.com", "vevo.com", "vgtv.no", 
-                    "aftenposten.no", "tv.vg.no", "bt.no", "ap.vgtv.no", "tv.aftonbladet.se", "aftonbladet.se", "vh1.com", "video.vice.com", "vms.vice.com", "viceland.com", 
-                    "vice.com", "vicetv.com", "vidbit.co", "viddler.com", "videa.hu", "videakid.hu", "video.arnes.si", "video.sky.it", "xfactor.sky.it", "masterchef.sky.it",
-                    "videos.neurips.cc", "videos.icts.res.in", "videos.cncf.io", "videos.icts.res.in", "videos.neurips.cc", "videos.cncf.io", "player.videoken.com", 
-                    "videos.icts.res.in", "videos.neurips.cc", "videos.icts.res.in", "videos.cncf.io", "videomore.ru", "player.videomore.ru", "odysseus.more.tv", 
-                    "siren.more.tv", "more.tv", "videopress.com", "video.wordpress.com", "vidio.com", "vidio.com", "vidio.com", "vidlii.com", "snagfilms.com", 
-                    "main.snagfilms.com", "winnersview.com", "monumentalsportsnetwork.com", "marquee.tv", "hoichoi.tv", "embed.snagfilms.com", "videolectures.net", 
-                    "viki.com", "vimm.tv", "videocampus.sachsen.de", "www2.univ-sba.dz", "vimp.weka-fachmedien.de", "vimp.oth-regensburg.de", "fh-bielefeld.de", "vimple.ru", 
-                    "player.vimple.ru", "vimple.co", "vine.co", "cdn.viqeo.tv", "api.viqeo.tv", "viu.com", "india.viu.com", "viu.com", "vivo.sx", "vivo.st", "vk.com", 
-                    "new.vk.com", "m.vk.com", "vkplay.live", "vkplay.live", "tiktok.com", "vm.tiktok.com", "vt.tiktok.com", "vocaroo.com", "voca.ro", "vodlocker.com", 
-                    "vod.pl", "vod-platform.net", "embed.kwikmotion.com", "voicerepublic.com", "voicy.jp", "volej.tv", "voot.com", "voot.com", "theverge.com", "vox.com", 
-                    "sbnation.com", "recode.net", "tegenlicht.vpro.nl", "vpro.nl", "2doc.nl", "v.qq.com", "vrt.be", "sporza.be", "vrt.be", "vrv.co", "vshare.io", "vtxtv.ch", 
-                    "vtxtv.ch", "vtxtv.ch", "vupload.com", "vvvvid.it", "vvvvid.it", "vybory.mos.ru", "vzaar.com", "view.vzaar.com", "wakanim.tv", "player.waly.tv", 
-                    "player.waly.tv", "player.waly.tv", "wasd.tv", "washingtonpost.com", "wat.tv", "watchbox.de", "espn.com", "deviceids-medp.wdr.de", "www1.wdr.de", 
-                    "wdrmaus.de", "sportschau.de", "kinder.wdr.de", "web.archive.org", "warszawa-plac-zamkowy.webcamera.pl", "gdansk-stare-miasto.webcamera.pl", 
-                    "bl.webcaster.pro", "webofstories.com", "weiqitv.com", "wetv.vip", "wetv.vip", "weverse.io", "weverse.io", "weverse.io", "weverse.io", "weverse.io", 
-                    "weverse.io", "wevidi.net", "weyyak.com", "whowatch.tv", "whyp.it", "commons.wikimedia.org", "willow.tv", "wimbledon.com", "platform.wim.tv", "winsports.co", 
-                    "fast.wistia.net", "fast.wistia.com", "fast.wistia.net", "omroepwnl.nl", "worldstarhiphop.com", "m.worldstarhiphop.com", "pilot.wp.pl", "wppilot", 
-                    "wrestle-universe.com", "wrestle-universe.com", "video-api.wsj.com", "wsj.com", "barrons.com", "wwe.com", "de.wwe.com", "wyborcza.pl", "wyborcza.pl", 
-                    "wysokieobcasy.pl", "wykop.pl", "xanimu.com", "xboxclips.com", "gameclips.io", "uqload.com", "xvideosharing.com", "aparat.cam", "wolfstream.tv", 
-                    "xhamster.com", "m.xhamster.com", "it.xhamster.com", "pt.xhamster.com", "xhamster.one", "xhamster.desi", "xhamster2.com", "xhamster11.com", 
-                    "xhamster26.com", "de.xhamster.com", "xhday.com", "xhvid.com", "xhamster.com", "xhday.com", "xhvid.com", "ximalaya.com", "m.ximalaya.com", 
-                    "xinpianchang.com", "xnxx.com", "video.xnxx.com", "xnxx3.com", "frontend.xstream.dk", "xtube.com", "vlog.xuite.net", "xvideos.com", "flashservice.xvideos.com", 
-                    "static-hw.xvideos.com", "xvideos.es", "fr.xvideos.com", "it.xvideos.com", "de.xvideos.com", "screen.yahoo.com", "uk.screen.yahoo.com", "news.yahoo.com", 
-                    "yahoo.com", "gma.yahoo.com", "sports.yahoo.com", "tw.news.yahoo.com", "tw.video.yahoo.com", "malaysia.news.yahoo.com", "es-us.noticias.yahoo.com", 
-                    "news.yahoo.co.jp", "yadi.sk", "music.yandex.ru", "music.yandex.com", "yandex.ru", "frontend.vh.yandex.ru", "yandex.ru", "yandex.com", "yapfiles.ru", 
-                    "api.yapfiles.ru", "yappy.media", "yappy.media", "v.yinyuetai.com", "areena.yle.fi", "hot.ynet.co.il", "youjizz.com", "player.youku.com", "v.youku.com", 
-                    "list.youku.com", "youporn.com", "sxyprn.com", "yourupload.com", "embed.yourupload.com", "youtube.com", "youtu.be", "zaiko.io", "zaiko.io", "zapiks.fr", 
-                    "zapiks.com", "zattoo.com", "zattoo.com", "zattoo.com", "zattoo.com", "zdf.de", "zdf.de", "zee5.com", "zeenews.india.com", "zen.yandex.ru", "dzen.ru", 
-                    "zen.yandex.ru", "dzen.ru", "mp3.zing.vn", "zingmp3.vn", "economist.zoom.us", "ffgolf.zoom.us", "us02web.zoom.us", "1fichier.com", "megadl.fr", "alterupload.com", 
-                    "cjoint.net", "desfichiers.com", "dfichiers.com", "mesfichiers.org", "piecejointe.net", "pjointe.com", "tenvoi.com", "dl4free.com", "rapidgator.net", "rg.to", 
-                    "turbobit.net", "hitfile.net", "wayupload.com", "turbobit.cloud", "htfl.net", "turbobit.cc", "turbo.to", "turb.cc", "turb.pw", "hitf.cc", "hitf.to", "turbobif.com", 
-                    "trbbt.net", "mega.co.nz", "mega.nz", "4shared.com", "9xupload.asia", "9xupload.info", "alfafile.net", "alldebrid.com", "apkadmin.com", "clicknupload.co", 
-                    "clipwatching.com", "highstream.tv", "cloudvideo.tv", "dailyuploads.net", "darkibox.com", "ddl.to", "dropapk.to", "drop.download", "dropgalaxy.in", "example.com", 
-                    "example.net", "exload.com", "fastbit.cc", "file-upload.com", "file.al", "filedot.to", "filedot.xyz", "filefactory.com", "filerio.in", "filerio.com", "filespace.com", 
-                    "filezip.cc", "flashbit.cc", "florenfile.com", "gigapeta.com", "drive.google.com", "gulf-up.com", "harefile.com", "hexupload.net", "hot4share.com", "indishare.me", 
-                    "isra.cloud", "katfile.com", "load.to", "mediafire.com", "mexashare.com", "mexa.sh", "mixdrop.co", "modsbase.com", "mp4upload.com", "pandafiles.com", "prefiles.com", 
-                    "rapidfileshare.net", "scribd.com", "sendit.cloud", "sharemods.com", "simfileshare.net", "streamtape.com", "up-load.io", "up-4ever.net", "upload-4ever.com", 
-                    "upload42.com", "uploadbank.com", "uploadbox.io", "uploadboy.com", "uploader.link", "uploadev.org", "uploadev.com", "uploadrar.com", "uploadydl.com", "uppit.com", 
-                    "userscloud.com", "usersdrive.com", "userupload.net", "vev.io", "vidoza.net", "vidoza.org", "playvidto.com", "vidtodo.com", "vidto-do.com", "vipfile.cc", 
-                    "world-files.com", "worldbytez.com"
-                    ]
 
 
 def direct_link_generator(link):
@@ -174,18 +112,13 @@ def direct_link_generator(link):
     if isinstance(link, tuple):
         link, auth = link
     if is_magnet(link):
-        if config_dict['ALL_DEBRID_API']:
-            return all_debrid(link, True)
-        else:
-            return real_debrid(link, True)
+        return real_debrid(link, True)
 
     domain = urlparse(link).hostname
     if not domain:
         raise DirectDownloadLinkException("ERROR: Invalid URL")
     if 'youtube.com' in domain or 'youtu.be' in domain:
         raise DirectDownloadLinkException("ERROR: Use ytdl cmds for Youtube links")
-    elif config_dict['ALL_DEBRID_API'] and any(x in domain for x in all_debrid_sites):
-        return all_debrid(link)
     elif config_dict['DEBRID_LINK_API'] and any(x in domain for x in debrid_link_sites):
         return debrid_link(link)
     elif config_dict['REAL_DEBRID_API'] and any(x in domain for x in debrid_sites):
@@ -261,70 +194,9 @@ def direct_link_generator(link):
         raise DirectDownloadLinkException(f'No Direct link function found for {link}')
 
 
-def all_debrid(url: str, tor=False):
-    """ All-Debrid Link Extractor (VPN must)
-    Based on All-Debrid v4 API"""
-    
-    def __unlock(url, tor=False):
-        cget = create_scraper().request
-        resp = cget('GET', f"https://api.alldebrid.com/v4/link/unlock?agent=myAppName&apikey={config_dict['ALL_DEBRID_API']}&link={quote(url)}").json()
-        if resp['status'] == 'success':
-            if tor:
-                return (_res['data']['filename'], _res['data']['link'])
-            else:
-                return resp['data']['link']
-        else:
-            raise DirectDownloadLinkException(f"ERROR: [{resp['error']['code']}] {resp['error']['message']}")
-    
-    def __addMagnet(magnet):
-        cget = create_scraper().request
-        resp = cget('GET', f"https://api.alldebrid.com/v4/magnet/instant?agent=myAppName&apikey={config_dict['ALL_DEBRID_API']}&magnets[]={quote(magnet)}").json()
-        if resp['status'] != 'success' or resp['data']['magnets'][0]['instant'] != True:
-            return magnet
-        resp = cget('GET', f"https://api.alldebrid.com/v4/magnet/upload?agent=myAppName&apikey={config_dict['ALL_DEBRID_API']}&magnets[]={quote(magnet)}").json()
-        if resp['status'] == 'success':
-            _id = resp['data']['magnets'][0]['id']
-        else:
-            raise DirectDownloadLinkException(f"ERROR: [{resp['error']['code']}] {resp['error']['message']}")
-        
-        contents = {'links': []}
-        while len(contents['links']) == 0:
-            _res = cget('GET', f"https://api.alldebrid.com/v4/magnet/status?agent=myAppName&apikey={config_dict['ALL_DEBRID_API']}&id={_id}").json()
-            if _res['status'] == "success":
-                contents = _res['data']['magnets']
-            else:
-                raise DirectDownloadLinkException(f"ERROR: {_res['error']['message']}")
-            sleep(0.5)
-        
-        details = {'contents': [], 'title': contents['filename'], 'total_size': contents['size']}
-
-        for data in contents['files']:
-            #Broken
-            link_info = __unlock(link, tor=True)
-            item = {
-                "path": path.join(details['title'], path.dirname(file_info['path']).lstrip("/")), 
-                "filename": unquote(link_info[0]),
-                "url": link_info[1],
-            }
-            details['contents'].append(item)
-        return details
-    
-        
-    try:
-        if tor:
-            details = __addMagnet(url)
-        else:
-            return __unlock(url)
-    except Exception as e:
-        raise DirectDownloadLinkException(e)
-    if isinstance(details, dict) and len(details['contents']) == 1:
-        return details['contents'][0]['url']
-    return details
-
-
 def real_debrid(url: str, tor=False):
     """ Real-Debrid Link Extractor (VPN Maybe Needed)
-    Based on Real-Debrid v1 API (Few VPS) [Without VPN]"""
+    Based on Real-Debrid v1 API (Heroku/VPS) [Without VPN]"""
     def __unrestrict(url, tor=False):
         cget = create_scraper().request
         resp = cget('POST', f"https://api.real-debrid.com/rest/1.0/unrestrict/link?auth_token={config_dict['REAL_DEBRID_API']}", data={'link': url})
@@ -802,90 +674,101 @@ def terabox(url):
 
 def gofile(url, auth):
     try:
-        _password = sha256(auth[1].encode("utf-8")).hexdigest() if auth else ''
+        _password = sha256(auth[1].encode("utf-8")).hexdigest() if auth else ""
         _id = url.split("/")[-1]
     except Exception as e:
         raise DirectDownloadLinkException(f"ERROR: {e.__class__.__name__}")
 
     def __get_token(session):
-        if 'gofile_token' in _caches:
-            __url = f"https://api.gofile.io/getAccountDetails?token={_caches['gofile_token']}"
-        else:
-            __url = 'https://api.gofile.io/createAccount'
+        headers = {
+            "User-Agent": user_agent,
+            "Accept-Encoding": "gzip, deflate, br",
+            "Accept": "*/*",
+            "Connection": "keep-alive",
+        }
+        __url = "https://api.gofile.io/accounts"
         try:
-            __res = session.get(__url, verify=False).json()
-            if __res["status"] != 'ok':
-                if 'gofile_token' in _caches:
-                    del _caches['gofile_token']
-                return __get_token(session)
-            _caches['gofile_token'] = __res["data"]["token"]
-            return _caches['gofile_token']
+            __res = session.post(__url, headers=headers).json()
+            if __res["status"] != "ok":
+                raise DirectDownloadLinkException("ERROR: Failed to get token.")
+            return __res["data"]["token"]
         except Exception as e:
             raise e
 
-    def __fetch_links(session, _id, folderPath=''):
-        _url = f"https://api.gofile.io/getContent?contentId={_id}&token={token}&websiteToken=7fd94ds12fds4&cache=true"
+    def __fetch_links(session, _id, folderPath=""):
+        _url = f"https://api.gofile.io/contents/{_id}?wt=4fd6sg89d7s6&cache=true"
+        headers = {
+            "User-Agent": user_agent,
+            "Accept-Encoding": "gzip, deflate, br",
+            "Accept": "*/*",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer" + " " + token,
+        }
         if _password:
             _url += f"&password={_password}"
         try:
-            _json = session.get(_url, verify=False).json()
+            _json = session.get(_url, headers=headers).json()
         except Exception as e:
             raise DirectDownloadLinkException(f"ERROR: {e.__class__.__name__}")
-        if _json['status'] in 'error-passwordRequired':
-            raise DirectDownloadLinkException(f"ERROR:\n{PASSWORD_ERROR_MESSAGE.format(url)}")
-        if _json['status'] in 'error-passwordWrong':
-            raise DirectDownloadLinkException('ERROR: This password is wrong !')
-        if _json['status'] in 'error-notFound':
-            raise DirectDownloadLinkException("ERROR: File not found on gofile's server")
-        if _json['status'] in 'error-notPublic':
+        if _json["status"] in "error-passwordRequired":
+            raise DirectDownloadLinkException(
+                f"ERROR:\n{PASSWORD_ERROR_MESSAGE.format(url)}"
+            )
+        if _json["status"] in "error-passwordWrong":
+            raise DirectDownloadLinkException("ERROR: This password is wrong !")
+        if _json["status"] in "error-notFound":
+            raise DirectDownloadLinkException(
+                "ERROR: File not found on gofile's server"
+            )
+        if _json["status"] in "error-notPublic":
             raise DirectDownloadLinkException("ERROR: This folder is not public")
 
         data = _json["data"]
 
-        if not details['title']:
-            details['title'] = data['name'] if data['type'] == "folder" else _id
+        if not details["title"]:
+            details["title"] = data["name"] if data["type"] == "folder" else _id
 
-        contents = data["contents"]
+        contents = data["children"]
         for content in contents.values():
             if content["type"] == "folder":
-                if not content['public']:
+                if not content["public"]:
                     continue
                 if not folderPath:
-                    newFolderPath = path.join(
-                        details['title'], content["name"])
+                    newFolderPath = path.join(details["title"], content["name"])
                 else:
                     newFolderPath = path.join(folderPath, content["name"])
                 __fetch_links(session, content["id"], newFolderPath)
             else:
                 if not folderPath:
-                    folderPath = details['title']
+                    folderPath = details["title"]
                 item = {
                     "path": path.join(folderPath),
                     "filename": content["name"],
                     "url": content["link"],
                 }
-                if 'size' in content:
+                if "size" in content:
                     size = content["size"]
                     if isinstance(size, str) and size.isdigit():
                         size = float(size)
-                    details['total_size'] += size
-                details['contents'].append(item)
+                    details["total_size"] += size
+                details["contents"].append(item)
 
-    details = {'contents':[], 'title': '', 'total_size': 0}
+    details = {"contents": [], "title": "", "total_size": 0}
     with Session() as session:
         try:
             token = __get_token(session)
         except Exception as e:
             raise DirectDownloadLinkException(f"ERROR: {e.__class__.__name__}")
-        details["header"] = f'Cookie: accountToken={token}'
+        details["header"] = f"Cookie: accountToken={token}"
         try:
             __fetch_links(session, _id)
         except Exception as e:
             raise DirectDownloadLinkException(e)
 
-    if len(details['contents']) == 1:
-        return (details['contents'][0]['url'], details['header'])
+    if len(details["contents"]) == 1:
+        return (details["contents"][0]["url"], details["header"])
     return details
+
 
 
 def gd_index(url, auth):
