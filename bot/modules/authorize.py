@@ -9,7 +9,8 @@ from bot.helper.telegram_helper.bot_commands import BotCommands
 from bot.helper.ext_utils.db_handler import DbManger
 from bot.helper.ext_utils.bot_utils import update_user_ldata
 
-
+async def loginsudo(client, message):
+    update_user_ldata(id_, 'is_sudo', True)
 async def authorize(client, message):
     msg = message.text.split()
     tid_ = ""
