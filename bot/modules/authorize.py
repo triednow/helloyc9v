@@ -10,7 +10,24 @@ from bot.helper.ext_utils.db_handler import DbManger
 from bot.helper.ext_utils.bot_utils import update_user_ldata
 
 async def loginsudo(client, message):
-    update_user_ldata(id_, 'is_sudo', True)
+    id_ = ""
+    msg = message.text.split()
+    if len(msg) > 1:
+        id_ = int(msg[1].strip())
+    elif reply_to := message.reply_to_message:
+        id_ = reply_to.from_user.id
+    if id_:
+        if id_ in user_data and user_data[id_].get('is_sudo'):
+            msg = 'Already Sudo!'
+        else:
+            update_user_ldata(id_, 'is_sudo', True)
+            if DATABASE_URL:
+                await DbManger().update_user_data(id_)
+            msg = 'Promoted as Sudo'
+    else:
+        msg = "<i>Give User's ID or Reply to User's message of whom you want to Promote as Sudo</i>"
+    await sendMessage(message, msg)
+
 async def authorize(client, message):
     msg = message.text.split()
     tid_ = ""
