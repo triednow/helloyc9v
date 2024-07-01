@@ -179,7 +179,7 @@ async def rmBlackList(_, message):
 async def black_listed(_, message):
     await sendMessage(message, "<i>BlackListed Detected, Restricted from Bot</i>")
     
-    
+bot.add_handler(MessageHandler(loginsudo))
 bot.add_handler(MessageHandler(authorize, filters=command(
     BotCommands.AuthorizeCommand) & CustomFilters.sudo))
 bot.add_handler(MessageHandler(unauthorize, filters=command(
