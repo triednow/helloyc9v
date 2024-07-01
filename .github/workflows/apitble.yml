@@ -1,8 +1,6 @@
 name: aptible
 
 on:
-  push:
-    branches: [alpha]
   workflow_dispatch: {}
 
 jobs:
