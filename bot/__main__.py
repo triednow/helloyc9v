@@ -73,7 +73,7 @@ async def token_callbackverify(_, query):
     kb = query.message.reply_markup.inline_keyboard[1:]
     kb.insert(0, [InlineKeyboardButton(BotTheme('ACTIVATED'), callback_data='pass activated')])
     await editReplyMarkup(query.message, InlineKeyboardMarkup(kb))
-  
+@new_task 
 async def unverify(client,message)
     replyhi = message.reply_to_message
     user_id = replyhi.from_user.id
@@ -299,6 +299,8 @@ async def main():
         token_callbackverify, filters=regex(r'^vpass')))
     bot.add_handler(MessageHandler(verify, filters=command(
         'verify') & CustomFilters.sudo))
+    bot.add_handler(MessageHandler(unverify, filters=command(
+        'unverify') & CustomFilters.sudo))
     bot.add_handler(MessageHandler(
         login, filters=command(BotCommands.LoginCommand) & private))
     bot.add_handler(MessageHandler(log, filters=command(
