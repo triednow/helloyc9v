@@ -37,6 +37,43 @@ from .modules import authorize, clone, gd_count, gd_delete, gd_list, cancel_mirr
 async def stats(client, message):
     msg, btns = await get_stats(message)
     await sendMessage(message, msg, btns, photo='IMAGES')
+@new_task
+async def verify(client, message):
+    buttons = ButtonMaker()
+    buttons.ubutton(BotTheme('ST_BN1_NAME'), BotTheme('ST_BN1_URL'))
+    buttons.ubutton(BotTheme('ST_BN2_NAME'), BotTheme('ST_BN2_URL'))
+    reply_markup = buttons.build_menu(2)
+    if config_dict['TOKEN_TIMEOUT']:
+        replyhi = message.reply_to_message
+        userid = replyhi.from_user.id
+    #    encrypted_url = message.command[1]
+      #  input_token, pre_uid = (b64decode(encrypted_url.encode()).decode()).split('&&')
+    #    if int(pre_uid) != userid:
+    #        return await sendMessage(message, BotTheme('OWN_TOKEN_GENERATE'))
+        data = user_data.get(userid, {})
+        input_token=data['token']
+     #   if 'token' not in data or data['token'] != input_token:
+      #      return await sendMessage(message, BotTheme('USED_TOKEN'))
+     #   elif config_dict['LOGIN_PASS'] is not None and data['token'] == config_dict['LOGIN_PASS']:
+       #     return await sendMessage(message, BotTheme('LOGGED_PASSWORD'))
+        buttons.ibutton(BotTheme('ACTIVATE_BUTTON'), f'vpass {input_token}', 'header')
+        reply_markup = buttons.build_menu(2)
+        msg = BotTheme('TOKEN_MSG', token=input_token, validity=get_readable_time(int(config_dict["TOKEN_TIMEOUT"])))
+        return await sendMessage(message, msg, reply_markup)
+
+async def token_callbackverify(_, query):
+    user_id = query.from_user.id
+    input_token = query.data.split()[1]
+    data = user_data.get(user_id, {})
+ #   if 'token' not in data or data['token'] != input_token:
+  #      return await query.answer('Already Used, Generate New One', show_alert=True)
+    update_user_ldata(user_id, 'token', str(uuid4()))
+    update_user_ldata(user_id, 'time', time())
+    await query.answer('Activated Temporary Token!', show_alert=True)
+    kb = query.message.reply_markup.inline_keyboard[1:]
+    kb.insert(0, [InlineKeyboardButton(BotTheme('ACTIVATED'), callback_data='pass activated')])
+    await editReplyMarkup(query.message, InlineKeyboardMarkup(kb))
+  
 
 @new_task
 async def start(client, message):
@@ -252,6 +289,10 @@ async def main():
         start, filters=command(BotCommands.StartCommand) & private))
     bot.add_handler(CallbackQueryHandler(
         token_callback, filters=regex(r'^pass')))
+    bot.add_handler(CallbackQueryHandler(
+        token_callbackverify, filters=regex(r'^vpass')))
+    bot.add_handler(MessageHandler(verify, filters=command(
+        'verify') & CustomFilters.sudo))
     bot.add_handler(MessageHandler(
         login, filters=command(BotCommands.LoginCommand) & private))
     bot.add_handler(MessageHandler(log, filters=command(
