@@ -72,7 +72,7 @@ async def token_callbackverify(_, query):
     await query.answer('Activated Temporary Token!', show_alert=True)
     kb = query.message.reply_markup.inline_keyboard[1:]
     kb.insert(0, [InlineKeyboardButton(BotTheme('ACTIVATED'), callback_data='pass activated')])
-    await editReplyMarkup(query.message, InlineKeyboardMarkup(kb))
+    return await editReplyMarkup(query.message, InlineKeyboardMarkup(kb))
 @new_task 
 async def unverify(client,message):
     replyhi = message.reply_to_message
@@ -80,7 +80,7 @@ async def unverify(client,message):
     data = user_data.get(user_id, {})
     del data['time']
     msg = "You Have Been Unverify by Admin Please Verify again!"
-    await sendMessage(message, msg)
+    return await sendMessage(message, msg)
 @new_task
 async def start(client, message):
     buttons = ButtonMaker()
