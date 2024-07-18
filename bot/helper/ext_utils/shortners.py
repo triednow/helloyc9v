@@ -41,12 +41,12 @@ def short_url(longurl, attempt=0):
         elif "cutt.ly" in _shortener:
             return cget('GET', f'http://cutt.ly/api/api.php?key={_shortener_api}&short={longurl}').json()['url']['shortLink']
         else:
-            res = cget('GET', f'https://{_shortener}/st?api={_shortener_api}&url={quote(longurl)}').json()
+            res = cget('GET', f'https://{_shortener}/api?api={_shortener_api}&url={quote(longurl)}').json()
             shorted = res['shortenedUrl']
             if not shorted:
                 shrtco_res = cget('GET', f'https://api.shrtco.de/v2/shorten?url={quote(longurl)}').json()
                 shrtco_link = shrtco_res['result']['full_short_link']
-                res = cget('GET', f'https://{_shortener}/st?api={_shortener_api}&url={shrtco_link}').json()
+                res = cget('GET', f'https://{_shortener}/api?api={_shortener_api}&url={shrtco_link}').json()
                 shorted = res['shortenedUrl']
             if not shorted:
                 shorted = longurl
