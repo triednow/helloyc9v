@@ -78,7 +78,7 @@ async def unverify(client,message):
     replyhi = message.reply_to_message
     user_id = replyhi.from_user.id
     data = user_data.get(user_id, {})
-    del data('time')
+    del data['time']
     msg = "You Have Been Unverify by Admin Please Verify again!"
     await sendMessage(message, msg)
 @new_task
