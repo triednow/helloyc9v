@@ -74,7 +74,7 @@ async def token_callbackverify(_, query):
     kb.insert(0, [InlineKeyboardButton(BotTheme('ACTIVATED'), callback_data='pass activated')])
     await editReplyMarkup(query.message, InlineKeyboardMarkup(kb))
 @new_task 
-async def unverify(client,message)
+async def unverify(client,message):
     replyhi = message.reply_to_message
     user_id = replyhi.from_user.id
     data = user_data.get(user_id, {})
