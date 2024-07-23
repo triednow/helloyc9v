@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env.  python3
 import platform
 from base64 import b64encode
 from datetime import datetime
