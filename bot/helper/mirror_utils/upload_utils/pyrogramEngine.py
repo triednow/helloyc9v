@@ -113,10 +113,11 @@ class TgUploader:
                 )
                 
                 for user in user_data.items():
-                    msg = []
+                    msg = ''
                     button = None
                     token_msg, button = await checking_access(user, button)
                     if token_msg is not None:
+                        msg = token_msg
                         await sendMessage(message, msg, btn.build_menu(1))
                         return
                     copied = await bot.copy_message(
