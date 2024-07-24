@@ -5,6 +5,7 @@ from os import execl as osexecl
 from asyncio import create_subprocess_exec, gather, run as asyrun
 from uuid import uuid4
 from base64 import b64decode
+from bot.helper.ext_utils.bot_utils import checking_access
 from importlib import import_module, reload
 
 from requests import get as rget
