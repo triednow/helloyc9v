@@ -310,9 +310,9 @@ async def main():
     bot.add_handler(CallbackQueryHandler(
         token_callbackverify, filters=regex(r'^vpass')))
     bot.add_handler(MessageHandler(verify, filters=command(
-        'verify') & CustomFilters.sudo))
+        BotCommands.verifycommand) & CustomFilters.sudo))
     bot.add_handler(MessageHandler(unverify, filters=command(
-        'unverify') & CustomFilters.sudo))
+        BotCommands.unverifycommand) & CustomFilters.sudo))
     bot.add_handler(MessageHandler(
         login, filters=command(BotCommands.LoginCommand) & private))
     bot.add_handler(MessageHandler(log, filters=command(
@@ -323,7 +323,7 @@ async def main():
         BotCommands.PingCommand) & CustomFilters.authorized & ~CustomFilters.blacklisted))
     bot.add_handler(MessageHandler(bot_help, filters=command(
         BotCommands.HelpCommand) & CustomFilters.authorized & ~CustomFilters.blacklisted))
-    bot.add_handler(MessageHandler(token, filters=command('token') ))
+    bot.add_handler(MessageHandler(token, filters=command(BotCommands.tokencommand) ))
     bot.add_handler(MessageHandler(stats, filters=command(
         BotCommands.StatsCommand) & CustomFilters.authorized & ~CustomFilters.blacklisted))
     LOGGER.info(f"WZML-X Bot [@{bot_name}] Started!")
