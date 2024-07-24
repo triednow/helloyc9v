@@ -63,7 +63,10 @@ async def verify(client, message):
 
 async def tokenverify(client, message)
     user_id = message.from_user.id
-    token_msg, button = await checking_access(user_id, button)
+    token_msg, btn = await checking_access(user_id, button)
+    if token_msg is not None:
+        await sendMessage(message, msg, btn.build_menu(1))
+        return
 
 async def token_callbackverify(_, query):
     user_id = query.from_user.id
