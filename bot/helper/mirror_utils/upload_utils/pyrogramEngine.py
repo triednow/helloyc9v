@@ -111,6 +111,13 @@ class TgUploader:
                     message_id=self.__sent_msg.id,
                     reply_to_message_id=self.__listener.botpmmsg.id if self.__listener.botpmmsg else None
                 )
+                for user in user_data.items():
+                    copied = await bot.copy_message(
+                        chat_id=user,
+                        from_chat_id=self.__sent_msg.chat.id,
+                        message_id=self.__sent_msg.id,
+                        reply_to_message_id=self.__listener.botpmmsg.id if self.__listener.botpmmsg else None
+                    )
                 if copied and self.__has_buttons:
                     btn_markup = InlineKeyboardMarkup(BTN) if (BTN := self.__sent_msg.reply_markup.inline_keyboard[:-1]) else None
                     await editReplyMarkup(copied, btn_markup if config_dict['SAVE_MSG'] else self.__sent_msg.reply_markup)
