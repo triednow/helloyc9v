@@ -61,7 +61,7 @@ async def verify(client, message):
         msg = BotTheme('TOKEN_MSG', token=input_token, validity=get_readable_time(int(config_dict["TOKEN_TIMEOUT"])))
         return await sendMessage(message, msg, reply_markup)
 
-async def tokenverify(client, message)
+async def tokenverify(client, message):
     user_id = message.from_user.id
     button = None
     token_msg, btn = await checking_access(user_id, button)
