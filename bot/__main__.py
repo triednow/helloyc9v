@@ -67,7 +67,7 @@ async def tokenverify(client, message):
     button = None
     token_msg, btn = await checking_access(user_id, button)
     if token_msg is not None:
-        return await sendMessage(message, msg, btn.build_menu(1))
+        return await sendMessage(message, token_msg, btn.build_menu(1))
         
     if token_msg is None:
         msg2 = "You Are Verified Don't Worry✨"
