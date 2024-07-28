@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 from random import choice
 from time import time
 from copy import deepcopy
