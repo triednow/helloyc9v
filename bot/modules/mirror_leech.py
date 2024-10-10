@@ -38,6 +38,7 @@ async def _mirror_leech(client, message, isQbit=False, isLeech=False, sameDir=No
     input_list = text[0].split(' ')
 
     arg_base = {'link': '', 
+                '-vtl': '', 
                 '-i': '0',
                 '-m': '', '-sd': '', '-samedir': '',
                 '-d': False, '-seed': False,
@@ -89,11 +90,14 @@ async def _mirror_leech(client, message, isQbit=False, isLeech=False, sameDir=No
     bulk_start    = 0
     bulk_end      = 0
     ratio         = None
+    videotool     = args['-vtl']
     seed_time     = None
     reply_to      = None
     file_         = None
     session       = ''
-    
+
+    if videotool:
+        
     if not isinstance(seed, bool):
         dargs = seed.split(':')
         ratio = dargs[0] or None
