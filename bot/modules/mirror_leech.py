@@ -97,6 +97,12 @@ async def _mirror_leech(client, message, isQbit=False, isLeech=False, sameDir=No
     session       = ''
 
     if videotool:
+        user_id = message.from_user.id
+        buttons.ibutton("Extract", f"vt {user_id} extract")
+        buttons.ibutton("Compress", f"vt {user_id} compress")
+        buttons.ibutton("Rename", f"vt {user_id} rename")
+        buttons.ibutton("Watermark", f"vt {user_id} watermark")
+        buttons.ibutton("Trim", f"vt {user_id} trim")
         
     if not isinstance(seed, bool):
         dargs = seed.split(':')
